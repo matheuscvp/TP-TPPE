@@ -13,16 +13,10 @@ class CalculadoraIRPF {
       descricao
     })
 
-    this.totalDeducao = valor;
+    this.totalDeducao += valor;
   };
 
   obterTotalDeducoes() {
-    if (this.listaDeducoes.length === 2) {
-      return this.listaDeducoes[0].valor + this.listaDeducoes[1].valor; 
-    }
-    if (this.listaDeducoes.length === 3) {
-      return this.listaDeducoes[0].valor + this.listaDeducoes[1].valor + this.listaDeducoes[2].valor; 
-    }
     return this.totalDeducao;
   }
 

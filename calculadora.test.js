@@ -42,6 +42,16 @@ describe('Cadastro de Deduções', () => {
       //RETORNO
       [6500, [ { descricao: 'previdencia privada', valor: 2500 }, { descricao: 'funpresp', valor: 3500 }, { descricao: 'doações', valor: 500 } ]]
     ],
+    [
+      [
+        ['previdencia privada', 2500],
+        ['funpresp', 3500],
+        ['doações', 500],
+        ['contribuicao sindical', 250]
+      ],
+      //RETORNO
+      [6750, [ { descricao: 'previdencia privada', valor: 2500 }, { descricao: 'funpresp', valor: 3500 }, { descricao: 'doações', valor: 500 }, { descricao: 'contribuicao sindical', valor: 250 } ]]
+    ],
   ])("Teste parametrizado de cadastro de deduções", (inputValues, result) => {
     inputValues.forEach((inputValue) => {
       calculadora.cadastrarDeducao(inputValue[0], inputValue[1]);
