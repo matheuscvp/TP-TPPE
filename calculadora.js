@@ -1,7 +1,11 @@
 class CalculadoraIRPF {
   constructor() {
     this.listaDeducoes = [];
-    this.totalDeducao = 0;
+    this.previdencia = [];
+    this.deducoes = {
+      geral: 0,
+      previdencia: 0,
+    }
   }
 
   cadastrarDeducao(descricao, valor) {
@@ -13,11 +17,20 @@ class CalculadoraIRPF {
       descricao
     })
 
-    this.totalDeducao += valor;
+    this.deducoes.geral += valor;
   };
 
+  cadastrarPrevidencia(descricao, valor) {
+    this.previdencia.push({
+      descricao,
+      valor
+    });
+
+    this.deducoes.previdencia = valor;
+  }
+
   obterTotalDeducoes() {
-    return this.totalDeducao;
+    return this.deducoes.geral + this.deducoes.previdencia;
   }
 
   obterListaDeducoesGerais() {
