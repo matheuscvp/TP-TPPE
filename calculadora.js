@@ -1,0 +1,3 @@
+class CalculadoraIRPF {
+    constructor() {}
+}
