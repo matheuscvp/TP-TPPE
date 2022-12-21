@@ -2,6 +2,7 @@ class CalculadoraIRPF {
   constructor() {
     this.listaDeducoes = [];
     this.previdencia = [];
+    this.dependentes = [];
     this.deducoes = {
       geral: 0,
       previdencia: 0,
@@ -34,8 +35,15 @@ class CalculadoraIRPF {
     this.deducoes.pensao += valor;
   }
 
+  cadastrarDependente(nome, dataNascimento) {
+    this.dependentes = [{
+      nome,
+      dataNascimento
+    }]
+  }
+
   obterTotalDeducoes() {
-    return this.deducoes.geral + this.deducoes.previdencia + this.deducoes.pensao;
+    return this.deducoes.geral + this.deducoes.previdencia + this.deducoes.pensao + (189.59 * this.dependentes.length);
   }
 
   obterListaDeducoesGerais() {
@@ -44,6 +52,10 @@ class CalculadoraIRPF {
 
   obterListaDeducoesPrevidenciarias() {
     return this.previdencia;
+  }
+
+  obterListaDeDependentes() {
+    return this.dependentes;
   }
 }
 
