@@ -36,10 +36,10 @@ class CalculadoraIRPF {
   }
 
   cadastrarDependente(nome, dataNascimento) {
-    this.dependentes = [{
+    this.dependentes.push({
       nome,
       dataNascimento
-    }]
+    })
   }
 
   obterTotalDeducoes() {
