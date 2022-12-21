@@ -117,15 +117,30 @@ describe('Cadastro de Deduções', () => {
 
   it.each([
     [
-      ['Luis', "21/12/1999"],
+      [
+        ['Luis', "21/12/1999"],
+      ],
       [189.59, [ { nome: 'Luis', dataNascimento: "21/12/1999" } ]]
     ],
     [
-      ['Pedro', "02/03/2001"],
-      [189.59, [ { nome: 'Pedro', dataNascimento: "02/03/2001" } ]]
+      [
+        ['Luis', "21/12/1999"],
+        ['Pedro', "02/03/2001"],
+      ],
+      [379.18, [ { nome: 'Luis', dataNascimento: "21/12/1999" }, { nome: 'Pedro', dataNascimento: "02/03/2001" } ]]
     ],
-  ])("Teste parametrizado de cadastro de dependentes", (inputValue, result) => {
-    calculadora.cadastrarDependente(inputValue[0], inputValue[1]);
+    [
+      [
+        ['Luis', "21/12/1999"],
+        ['Pedro', "02/03/2001"],
+        ['João', "22/01/2017"],
+      ],
+      [568.77, [ { nome: 'Luis', dataNascimento: "21/12/1999" }, { nome: 'Pedro', dataNascimento: "02/03/2001" }, { nome: 'João', dataNascimento: "22/01/2017" } ]]
+    ],
+  ])("Teste parametrizado de cadastro de dependentes", (inputValues, result) => {
+    inputValues.forEach((inputValue) => {
+      calculadora.cadastrarDependente(inputValue[0], inputValue[1]);
+    })
 
     expect(calculadora.obterTotalDeducoes()).toBe(result[0]);
     expect(calculadora.obterListaDeDependentes()).toEqual(result[1]);
