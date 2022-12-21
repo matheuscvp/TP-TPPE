@@ -31,7 +31,7 @@ class CalculadoraIRPF {
   }
 
   cadastrarPensao(valor) {
-    this.deducoes.pensao = valor;
+    this.deducoes.pensao += valor;
   }
 
   obterTotalDeducoes() {
