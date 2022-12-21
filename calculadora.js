@@ -5,6 +5,7 @@ class CalculadoraIRPF {
     this.deducoes = {
       geral: 0,
       previdencia: 0,
+      pensao: 0,
     }
   }
 
@@ -29,8 +30,12 @@ class CalculadoraIRPF {
     this.deducoes.previdencia += valor;
   }
 
+  cadastrarPensao(valor) {
+    this.deducoes.pensao = valor;
+  }
+
   obterTotalDeducoes() {
-    return this.deducoes.geral + this.deducoes.previdencia;
+    return this.deducoes.geral + this.deducoes.previdencia + this.deducoes.pensao;
   }
 
   obterListaDeducoesGerais() {
