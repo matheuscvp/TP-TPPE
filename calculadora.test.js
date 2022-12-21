@@ -18,11 +18,34 @@ describe('Cadastro de Deduções', () => {
   });
 
   it.each([
-    [["Salario", 5000], [5000, [ { valor: 5000, descricao: "Salario" } ]]],
-    [["Salario", 7500], [7500, [ { valor: 7500, descricao: "Salario" } ]]],
-    [["Salario", 11000], [11000, [ { valor: 11000, descricao: "Salario" } ]]],
-  ])("Teste parametrizado de cadastro de deduções", (inputValue, result) => {
-    calculadora.cadastrarDeducao(inputValue[0], inputValue[1]);
+    [
+      [
+        ['previdencia privada', 2500],
+      ],
+      //RETORNO
+      [2500, [ { descricao: 'previdencia privada', valor: 2500 } ]]
+    ],
+    [
+      [
+        ['previdencia privada', 2500],
+        ['funpresp', 3500],
+      ],
+      //RETORNO
+      [6000, [ { descricao: 'previdencia privada', valor: 2500 }, { descricao: 'funpresp', valor: 3500 } ]]
+    ],
+    [
+      [
+        ['previdencia privada', 2500],
+        ['funpresp', 3500],
+        ['doações', 500]
+      ],
+      //RETORNO
+      [6500, [ { descricao: 'previdencia privada', valor: 2500 }, { descricao: 'funpresp', valor: 3500 }, { descricao: 'doações', valor: 500 } ]]
+    ],
+  ])("Teste parametrizado de cadastro de deduções", (inputValues, result) => {
+    inputValues.forEach((inputValue) => {
+      calculadora.cadastrarDeducao(inputValue[0], inputValue[1]);
+    })
 
     expect(calculadora.obterTotalDeducoes()).toBe(result[0]);
     expect(calculadora.obterListaDeducoesGerais()).toEqual(result[1]);
