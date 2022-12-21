@@ -18,11 +18,13 @@ describe('Cadastro de Deduções', () => {
   });
 
   it.each([
-    [["Salario", 5000], 5000],
-    [["Salario", 7500], 7500],
-    [["Salario", 11000], 11000],
-  ])("Teste parametrizado de cadastro de rendimentos", (inputValue, result) => {
-    calculadora.cadastrarRendimento(inputValue[0], inputValue[1]);
-    expect(calculadora.obterTotalRendimentos()).toBe(result);
+    [["Salario", 5000], [5000, [ { valor: 5000, descricao: "Salario" } ]]],
+    [["Salario", 7500], [7500, [ { valor: 7500, descricao: "Salario" } ]]],
+    [["Salario", 11000], [11000, [ { valor: 11000, descricao: "Salario" } ]]],
+  ])("Teste parametrizado de cadastro de deduções", (inputValue, result) => {
+    calculadora.cadastrarDeducao(inputValue[0], inputValue[1]);
+
+    expect(calculadora.obterTotalDeducoes()).toBe(result[0]);
+    expect(calculadora.obterListaDeducoesGerais()).toEqual(result[1]);
   });
 });
