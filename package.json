@@ -1,0 +1,23 @@
+{
+  "name": "TP1-TDD",
+  "version": "1.0.0",
+  "description": "Repositório para implementação do trabalho 1 da disciplina de Técnicas de programação em plataformas emergentes, que consiste em aplicar a metodologia TDD para desenvolver uma calculadora de IRRF",
+  "main": "calculadora.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matheuscvp/TP1-TDD.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matheuscvp/TP1-TDD/issues"
+  },
+  "homepage": "https://github.com/matheuscvp/TP1-TDD#readme",
+  "dependencies": {
+    "jest": "^29.3.1"
+  }
+}
