@@ -77,6 +77,15 @@ describe('Cadastro de Deduções', () => {
       //RETORNO
       [6600, [ { descricao: 'INSS', valor: 2500 }, { descricao: 'Privada', valor: 4100 } ]]
     ],
+    [
+      [
+        ['INSS', 2500],
+        ['Privada', 4100],
+        ['Extra', 1500],
+      ],
+      //RETORNO
+      [8100, [ { descricao: 'INSS', valor: 2500 }, { descricao: 'Privada', valor: 4100 }, { descricao: 'Extra', valor: 1500 } ]]
+    ],
   ])("Teste parametrizado de cadastro de dedução de contribuição previdenciaria", (inputValues, result) => {
     inputValues.forEach((inputValue) => {
       calculadora.cadastrarPrevidencia(inputValue[0], inputValue[1]);
