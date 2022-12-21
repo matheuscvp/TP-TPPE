@@ -36,6 +36,10 @@ class CalculadoraIRPF {
   obterListaDeducoesGerais() {
     return this.listaDeducoes;
   }
+
+  obterListaDeducoesPrevidenciarias() {
+    return this.previdencia;
+  }
 }
 
 module.exports = CalculadoraIRPF;

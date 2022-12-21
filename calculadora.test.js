@@ -62,11 +62,27 @@ describe('Cadastro de Deduções', () => {
   });
 
   it.each([
-    [["INSS", 850], 850],
-    [["INSS", 1250], 1250],
-    [["INSS", 2200], 2200],
-  ])("Teste parametrizado de cadastro de dedução de contribuição previdenciaria", (inputValue, result) => {
-    calculadora.cadastrarPrevidencia(inputValue[0], inputValue[1]);
-    expect(calculadora.obterTotalDeducoes()).toBe(result);
+    [
+      [
+        ['INSS', 2500],
+      ],
+      //RETORNO
+      [2500, [ { descricao: 'INSS', valor: 2500 } ]]
+    ],
+    [
+      [
+        ['INSS', 2500],
+        ['Privada', 4100],
+      ],
+      //RETORNO
+      [6600, [ { descricao: 'INSS', valor: 2500 }, { descricao: 'Privada', valor: 4100 } ]]
+    ],
+  ])("Teste parametrizado de cadastro de dedução de contribuição previdenciaria", (inputValues, result) => {
+    inputValues.forEach((inputValue) => {
+      calculadora.cadastrarPrevidencia(inputValue[0], inputValue[1]);
+    })
+
+    expect(calculadora.obterTotalDeducoes()).toBe(result[0]);
+    expect(calculadora.obterListaDeducoesPrevidenciarias()).toEqual(result[1]);
   })
 });
