@@ -114,4 +114,20 @@ describe('Cadastro de Deduções', () => {
     })
     expect(calculadora.obterTotalDeducoes()).toBe(result);
   });
+
+  it.each([
+    [
+      ['Luis', "21/12/1999"],
+      [189.59, [ { nome: 'Luis', dataNascimento: "21/12/1999" } ]]
+    ],
+    [
+      ['Pedro', "02/03/2001"],
+      [189.59, [ { nome: 'Pedro', dataNascimento: "02/03/2001" } ]]
+    ],
+  ])("Teste parametrizado de cadastro de dependentes", (inputValue, result) => {
+    calculadora.cadastrarDependente(inputValue[0], inputValue[1]);
+
+    expect(calculadora.obterTotalDeducoes()).toBe(result[0]);
+    expect(calculadora.obterListaDeDependentes()).toEqual(result[1]);
+  })
 });
