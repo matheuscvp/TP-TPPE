@@ -26,13 +26,10 @@ class CalculadoraIRPF {
       valor
     });
 
-    this.deducoes.previdencia = valor;
+    this.deducoes.previdencia += valor;
   }
 
   obterTotalDeducoes() {
-    if (this.previdencia.length === 2) {
-      return this.deducoes.geral + (this.previdencia[0].valor + this.previdencia[1].valor);
-    }
     return this.deducoes.geral + this.deducoes.previdencia;
   }
 
