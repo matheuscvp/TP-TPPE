@@ -94,4 +94,13 @@ describe('Cadastro de Deduções', () => {
     expect(calculadora.obterTotalDeducoes()).toBe(result[0]);
     expect(calculadora.obterListaDeducoesPrevidenciarias()).toEqual(result[1]);
   })
+
+  it.each([
+    [["Joao", 75], 75],
+    [["Pedro", 50], 50],
+    [["Luisa", 100], 100],
+  ])("Teste parametrizado de cadastro de dedução de pensão alimenticia", (inputValue, result) => {
+    calculadora.cadastrarPensao(inputValue[0], inputValue[1]);
+    expect(calculadora.obterTotalRendimentos()).toBe(result);
+  });
 });
