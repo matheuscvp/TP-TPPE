@@ -163,3 +163,33 @@ describe('Calculo de base de calculo', () => {
     expect(calculadora.obterBaseCalculo()).toBe(result);
   })
 });
+
+describe('Testes de Exceção', () => {
+  beforeEach(() => {
+    calculadora = new CalculadoraIRPF();
+  });
+
+  test('Cadastrar rendimento com descrição em branco', () => {
+    expect(() => calculadora.cadastrarRendimento('', 1000)).toThrow('DescricaoEmBrancoException');
+  });
+
+  test('Cadastrar rendimento sem valor', () => {
+    expect(() => calculadora.cadastrarRendimento('Salario', null)).toThrow('ValorRendimentoInvalidoException');
+  });
+
+  test('Cadastrar rendimento com valor negativo', () => {
+    expect(() => calculadora.cadastrarRendimento('Salario', -10)).toThrow('ValorRendimentoInvalidoException');
+  });
+
+  test('Cadastrar dedução sem descrição', () => {
+    expect(() => calculadora.cadastrarDeducao('', 1000)).toThrow('DescricaoEmBrancoException');
+  });
+
+  test('Cadastrar dedução sem valor', () => {
+    expect(() => calculadora.cadastrarDeducao('previdencia privada', null)).toThrow('ValorDeducaoInvalidoException');
+  });
+
+  test('Cadastrar dedução com valor negativo', () => {
+    expect(() => calculadora.cadastrarDeducao('previdencia privada', -10)).toThrow('ValorDeducaoInvalidoException');
+  });
+});
