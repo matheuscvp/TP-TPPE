@@ -11,6 +11,21 @@ test('Cadastro de rendimento', () => {
     expect(calculadora.obterTotalRendimentos()).toBe(5000);
 })
 
+test('test de imposto', () => {
+    calculadora.cadastrarRendimento("Salario", 5000);
+    expect(calculadora.calculoImposto()).toBeCloseTo(505.64,0.2);
+})
+
+test('teste de imposto com numero maior', () => {
+    calculadora.cadastrarRendimento("Salario", 10000);
+    expect(calculadora.calculoImposto()).toBeCloseTo(1880.64,0.2);
+})
+
+test('teste de imposto maior', () => {
+    calculadora.cadastrarRendimento("Salario", 50000);  
+    expect(calculadora.calculoImposto()).toBeCloseTo(12880.64,0.2);
+})
+
 
 describe('Cadastro de Deduções', () => {
   beforeEach(() => {
