@@ -154,6 +154,7 @@ describe('Calculo de base de calculo', () => {
 
   it.each([
     [[["Salario", 5000], ["Previdencia privada", 2500]], 2500],
+    [[["Aluguel", 3000], ["Doações", 1000]], 2000],
   ])("Testes parametrizado de base de calculo", (inputValues, result) =>{
     calculadora.cadastrarRendimento(inputValues[0][0], inputValues[0][1]);
     calculadora.cadastrarDeducao(inputValues[1][0], inputValues[1][1]);
