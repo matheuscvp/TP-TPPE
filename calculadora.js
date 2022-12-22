@@ -3,6 +3,7 @@ class CalculadoraIRPF {
     this.totalRendimento = 0;
     this.listaRendimentos = [];
     this.impostoRendimento = 0;
+    this.aliquota = 0;
     this.listaDeducoes = [];
     this.previdencia = [];
     this.dependentes = [];
@@ -57,7 +58,7 @@ class CalculadoraIRPF {
   }
 
   calculoImposto() {
-    let baseImposto = this.obterTotalRendimentos()
+    let baseImposto = this.obterBaseCalculo()
     baseImposto = baseImposto - 1903.98 
     if (baseImposto < 0){
       return this.impostoRendimento = 0;
@@ -77,6 +78,13 @@ class CalculadoraIRPF {
       return this.impostoRendimento = (baseImposto * 0.275) + 205.56 + 138.66 + 69.20;
     }
   } 
+
+  obterAliquota(){
+    this.calculoImposto();  
+    let impost = this.impostoRendimento;  
+
+    return this.aliquota = impost*100/this.totalRendimento;
+  }
 
 
   obterTotalDeducoes() {
