@@ -1,8 +1,8 @@
 class CalculadoraIRPF {
   constructor() {
-this.totalRendimento = 0;
+    this.totalRendimento = 0;
     this.listaRendimentos = [];
-
+    this.impostoRendimento = 0;
     this.listaDeducoes = [];
     this.previdencia = [];
     this.dependentes = [];
@@ -22,10 +22,6 @@ this.totalRendimento = 0;
       descricao
     });
     this.totalRendimento += valor;
-  }
-
-  obterTotalRendimentos() {
-    return this.totalRendimento;
   }
 
   cadastrarDeducao(descricao, valor) {
@@ -60,6 +56,29 @@ this.totalRendimento = 0;
     })
   }
 
+  calculoImposto() {
+    let baseImposto = this.obterTotalRendimentos()
+    baseImposto = baseImposto - 1903.98 
+    if (baseImposto < 0){
+      return this.impostoRendimento = 0;
+    } else if (baseImposto <= 922.67) {
+      return this.impostoRendimento = baseImposto * 0.075;
+
+    } else if (baseImposto > 922.67 && baseImposto <= 1847.07) {
+      baseImposto = baseImposto - 922,67;
+      return this.impostoRendimento = (baseImposto * 0.15) + 69.20;
+
+    } else if (baseImposto > 1847.07 && baseImposto <= 2760.7) {
+      baseImposto = baseImposto - 1847.07;
+      return this.impostoRendimento = (baseImposto * 0.225) + 138.66 + 69.20;
+
+    } else if (baseImposto > 2760.7) {
+      baseImposto = baseImposto - 2760.7;
+      return this.impostoRendimento = (baseImposto * 0.275) + 205.56 + 138.66 + 69.20;
+    }
+  } 
+
+
   obterTotalDeducoes() {
     return this.deducoes.geral + this.deducoes.previdencia + this.deducoes.pensao + (189.59 * this.dependentes.length);
   }
@@ -74,6 +93,11 @@ this.totalRendimento = 0;
 
   obterListaDeDependentes() {
     return this.dependentes;
+  }
+
+
+  obterTotalRendimentos() {
+    return this.totalRendimento;
   }
 
   obterBaseCalculo() {
