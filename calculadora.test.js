@@ -27,6 +27,69 @@ test('teste de imposto maior', () => {
 })
 
 
+
+test('Calculo de aliquota zero', () => {
+  calculadora.cadastrarRendimento("Salario", 1000);
+  expect(calculadora.obterAliquota()).toBeCloseTo(0);
+})
+
+test('Calculo de aliquota 2', () => {
+  calculadora.cadastrarRendimento("Salario", 3000);
+  expect(calculadora.obterAliquota()).toBeCloseTo(3.17,0.2);
+})
+
+test('Calculo de aliquota 3', () => {
+calculadora.cadastrarRendimento("Salario", 100000);
+expect(calculadora.obterAliquota()).toBeCloseTo(26.63 ,0.2);
+})
+
+// teste aliquota com deducao
+test('Calculo de aliquota efetiva com deducao', () => {
+  calculadora.cadastrarRendimento("Salario", 3000);
+  calculadora.cadastrarDeducao("Previdencia", 1000);
+  expect(calculadora.obterAliquota()).toBeCloseTo(0.24,0.2);
+})
+
+test('Calculo de aliquota efetiva com deducao 2' , () => {
+  calculadora.cadastrarRendimento("Salario", 3000);
+  calculadora.cadastrarDeducao("Previdencia", 1000);
+  calculadora.cadastrarDeducao("Pensao", 1000);
+  expect(calculadora.obterAliquota()).toBeCloseTo(0);
+})
+
+test('Calculo de aliquota efetiva com deducao 3' , () => {
+  calculadora.cadastrarRendimento("Salario", 10000);
+  calculadora.cadastrarDeducao("Previdencia", 1000);
+  calculadora.cadastrarDeducao("Pensao", 1000);
+  calculadora.cadastrarDeducao("funpresp", 500);
+  expect(calculadora.obterAliquota()).toBeCloseTo(11.93,0.2);
+})
+
+// teste aliquota com deducao e dependente
+
+
+test('Calculo de aliquota com deducao e dependente', () => {
+  calculadora.cadastrarRendimento("Salario", 3000);
+  calculadora.cadastrarDeducao("Previdencia", 1000);
+  calculadora.cadastrarDependente("Joao", "01/01/2000");
+  expect(calculadora.obterAliquota()).toBe(0);
+})
+
+test('Calculo de aliquota com deducao e dependente 2', () => {
+  calculadora.cadastrarRendimento("Salario", 10000);
+  calculadora.cadastrarDeducao("Previdencia", 1000);
+  calculadora.cadastrarDependente("Joao", "01/01/2000");
+  calculadora.cadastrarDependente("Maria", "01/01/2000");
+  expect(calculadora.obterAliquota()).toBeCloseTo(15.01,0.2);
+})
+
+test('Calculo de aliquota com deducao e dependente 3', () => {
+calculadora.cadastrarRendimento("Salario", 10000);  
+calculadora.cadastrarDependente("Joao", "01/01/2000");
+expect(calculadora.obterAliquota()).toBeCloseTo(18.28,0.2);
+})
+
+
 describe('Cadastro de Deduções', () => {
   beforeEach(() => {
     calculadora = new CalculadoraIRPF();
