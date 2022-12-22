@@ -1,5 +1,8 @@
 class CalculadoraIRPF {
   constructor() {
+this.totalRendimento = 0;
+    this.listaRendimentos = [];
+
     this.listaDeducoes = [];
     this.previdencia = [];
     this.dependentes = [];
@@ -8,6 +11,21 @@ class CalculadoraIRPF {
       previdencia: 0,
       pensao: 0,
     }
+  }
+
+  cadastrarRendimento(descricao, valor) {
+    if (!descricao) throw 'DescricaoEmBrancoException';
+    if (!valor || valor < 0) throw 'ValorRendimentoInvalidoException'
+
+    this.listaRendimentos.push({
+      valor,
+      descricao
+    });
+    this.totalRendimento += valor;
+  }
+
+  obterTotalRendimentos() {
+    return this.totalRendimento;
   }
 
   cadastrarDeducao(descricao, valor) {
@@ -56,6 +74,10 @@ class CalculadoraIRPF {
 
   obterListaDeDependentes() {
     return this.dependentes;
+  }
+
+  obterBaseCalculo() {
+    return (this.totalRendimento - this.obterTotalDeducoes());
   }
 }
 
