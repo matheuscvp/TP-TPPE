@@ -77,7 +77,7 @@ this.totalRendimento = 0;
   }
 
   obterBaseCalculo() {
-    return (this.totalRendimento - this.obterTotalDeducoes());
+    return this.totalRendimento - this.obterTotalDeducoes();
   }
 }
 
